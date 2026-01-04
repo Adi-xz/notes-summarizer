@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Notes Generator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-gradient" href="/">🧠 Smart Notes Generator</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-primary" href="/">Home</a>
+            <a class="btn btn-sm btn-outline-primary" href="/translator">Translator</a>
+            <a class="btn btn-sm btn-outline-secondary" href="/about">About</a>
+        </div>
+
+        <div class="d-flex align-items-center gap-2 ms-auto">
+            <span id="themeLabel" class="small">🌙 Dark</span>
+            <label class="switch">
+                <input type="checkbox" id="themeSwitch">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <!-- Upload -->
+            <div class="card shadow-lg gradient-border mb-4">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Upload File</h4>
+
+                    <form method="POST" enctype="multipart/form-data" onsubmit="return validateFile()">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">File Type</label>
+                            <select class="form-select" name="file_type" required>
+                                <option value="">Choose...</option>
+                                <option value="pdf">PDF</option>
+                                <option value="ppt">PPT</option>
+                            </select>
+                            <div class="form-text">Choose the input file format. PDF is recommended for best extraction.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Upload File</label>
+                            <input class="form-control" type="file" name="pdf" required>
+                            <div class="form-text">Upload your PDF or PPT file. The app extracts text and generates notes (no translation on Home).</div>
+                        </div>
+
+                        <button class="btn btn-primary w-100 fw-semibold">🚀 Generate Notes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- How it works -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="fw-bold">⚙️ How It Works</h5>
+                    <ul class="small">
+                        <li>Extracts text from your document</li>
+                        <li>AI converts it into structured notes</li>
+                        <li>Notes are translated into your chosen language</li>
+                        <li>Final notes are saved as a downloadable PDF</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h6 class="fw-bold">🔎 What Each Section Means</h6>
+                    <ul class="small mb-0">
+                        <li><strong>Title:</strong> One-line heading for the notes.</li>
+                        <li><strong>One-line summary:</strong> Quick overview you can read first.</li>
+                        <li><strong>Key Points:</strong> Short bullets with the most important items.</li>
+                        <li><strong>Explanations:</strong> Brief 1-2 sentence clarification for each key point.</li>
+                    </ul>
+                </div>
+            </div>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            {% if summary %}
+            <div class="card shadow-lg">
+                <div class="card-header fw-bold text-white bg-gradient">
+                    📝 Generated Notes
+                </div>
+                <div class="card-body summary-box">
+                    <div class="summary-text">
+                        {{ summary.replace('\n','<br>')|safe }}
+                    </div>
+                    {% if language %}
+                    <p class="small text-muted mt-2">🌍 Language: {{ language }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if pdf_ready %}
+            <div class="text-center mt-4">
+                <a href="/download" class="btn btn-success fw-semibold">
+                    ⬇ Download Notes as PDF
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+<footer class="text-center small text-muted py-3">
+    Built with Flask • Gemini AI • Bootstrap
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const switchEl = document.getElementById("themeSwitch");
+const label = document.getElementById("themeLabel");
+
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    switchEl.checked = true;
+    label.textContent = "☀️ Light";
+}
+
+switchEl.addEventListener("change", () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", switchEl.checked ? "dark" : "light");
+    label.textContent = switchEl.checked ? "☀️ Light" : "🌙 Dark";
+});
+
+function validateFile() {
+    const fileType = document.querySelector('select[name="file_type"]').value;
+    const file = document.querySelector('input[type="file"]').files[0];
+    if (!fileType || !file) return false;
+    return true;
+}
+
+new bootstrap.Tooltip(document.body, { selector: '[data-bs-toggle="tooltip"]' })
+</script>
+
+</body>
+</html>
