@@ -60,8 +60,3 @@ Open http://127.0.0.1:5000 in your browser.
 	- Add proper error handling and input validation.
 	- Consider rate limits and costs for the Gemini API.
 
-## Want changes?
-If you'd like, I can:
-- Bundle Noto fonts into the repo to avoid runtime downloads (adds several MB).
-- Improve language detection or add more languages.
-- Add tests or CI steps.
