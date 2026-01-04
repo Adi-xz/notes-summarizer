@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Smart Notes Generator</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-gradient" href="/">🧠 Smart Notes Generator</a>
+        <div class="d-flex gap-2">
+            <a class="btn btn-sm btn-outline-primary" href="/">Home</a>
+            <a class="btn btn-sm btn-outline-primary" href="/translator">Translator</a>
+            <a class="btn btn-sm btn-primary" href="/about">About</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h4 class="fw-bold">About This Website</h4>
+                    <p>This site helps you quickly convert study materials into readable notes and also translate documents.</p>
+                    <ul>
+                        <li><strong>Home:</strong> Upload a document to generate structured study notes. The home summarizer keeps the original language (no translation).</li>
+                        <li><strong>Translator:</strong> Upload a document and choose a target language — the site will translate the content and provide a downloadable PDF in that language.</li>
+                        <li><strong>PDFs:</strong> The app attempts to embed appropriate fonts so scripts like Devanagari, Tamil, Malayalam, and Telugu render correctly.</li>
+                    </ul>
+                    <p class="small text-muted">Built with Flask and Gemini AI; fonts are downloaded at runtime if needed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-center small text-muted py-3">Built with Flask • Gemini AI • Bootstrap</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
