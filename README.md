@@ -9,7 +9,7 @@ A small Flask webapp that extracts text from PDFs/PPTs, generates structured stu
 - Font handling: the app attempts to download and embed appropriate Noto/DejaVu fonts at runtime so scripts like Devanagari, Tamil, Malayalam, and Telugu render correctly in generated PDFs.
 
 ## Files
-- `app.py` — main Flask application and logic for extraction, summarization, translation, and PDF generation.
+- APP.py — main Flask application and logic for extraction, summarization, translation, and PDF generation.
 - `templates/` — HTML templates (`index.html`, `translator.html`, `about.html`).
 - `static/style.css` — site styles.
 - `fonts/` — downloaded fonts (created at runtime).
