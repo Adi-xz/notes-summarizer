@@ -14,7 +14,7 @@ import requests  # added for font download
 app = Flask(__name__)
 
 # ================= GEMINI SETUP =================
-GEMINI_KEY = "AIzaSyB3B1C2Pf-buTVLSxzTnqy_tQgF5Q8abgY"
+GEMINI_KEY = "Your_gemini_key"
 client = genai.Client(api_key=GEMINI_KEY)
 
 # ================= GLOBAL STORAGE =================
