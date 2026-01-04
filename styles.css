@@ -1,0 +1,116 @@
+/* Gradient text */
+.text-gradient {
+    background: linear-gradient(45deg, #4f46e5, #0dcaf0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Navbar */
+.navbar {
+    background: #ffffff;
+}
+
+/* Card styles */
+.card {
+    border-radius: 16px;
+}
+
+.gradient-border {
+    border-left: 6px solid #0d6efd;
+}
+
+/* Summary */
+.summary-box pre {
+    white-space: pre-wrap;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 0.95rem;
+}
+
+.summary-box .summary-text {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: inherit;
+}
+
+/* Add slight spacing for paragraphs if summary contains paragraph tags */
+.summary-box .summary-text p {
+    margin: 0 0 0.75rem 0;
+}
+
+/* Spinner smooth */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Toggle switch */
+.switch {
+    position: relative;
+    width: 44px;
+    height: 22px;
+}
+.switch input {
+    opacity: 0;
+}
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+input:checked + .slider {
+    background: #0d6efd;
+}
+input:checked + .slider::before {
+    transform: translateX(22px);
+}
+
+/* 🌙 Dark Mode */
+body.dark {
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+body.dark .navbar {
+    background-color: #020617;
+}
+
+body.dark .card {
+    background-color: #020617;
+    color: #e5e7eb;
+}
+
+body.dark .form-control,
+body.dark .form-select {
+    background-color: #020617;
+    color: #ffffff;
+    border-color: #334155;
+}
+
+/* 🔹 ADDED: Dropdown option fix for dark mode */
+body.dark select.form-select option {
+    background-color: #020617;
+    color: #ffffff;
+}
+
+body.dark .card-header {
+    background: linear-gradient(45deg, #4f46e5, #0dcaf0);
+}
+
+body.dark footer {
+    color: #9ca3af;
+}
